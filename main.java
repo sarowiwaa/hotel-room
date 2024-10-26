@@ -6,12 +6,25 @@ class Main {
         int ch, ch2;
         char wish;
 
+        // Get user information
+        System.out.print("Enter your name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter your gender: ");
+        String gender = sc.nextLine();
+
+        System.out.print("Enter your phone number: ");
+        String phoneNumber = sc.nextLine();
+
+        System.out.print("Enter your email: ");
+        String email = sc.nextLine();
+
         // Initialize hotel object
         Hotel hotel = new Hotel();
 
         try {
             do {
-                System.out.println("1. Check Features\n2. Check Availability\n3. Book Room\n4. Order Food\n5. Deallocate Room\n6. Exit");
+                System.out.println("\n1. Check Features\n2. Check Availability\n3. Book Room\n4. Order Food\n5. Deallocate Room\n6. Exit");
                 System.out.print("Choose an option: ");
                 ch = sc.nextInt();
 
