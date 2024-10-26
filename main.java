@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 class Main {
     public static void main(String[] args) {
@@ -7,17 +8,49 @@ class Main {
         char wish;
 
         // Get user information
-        System.out.print("Enter your name: ");
-        String name = sc.nextLine();
+        String name = "";
+        while (true) {
+            System.out.print("Enter your name: ");
+            name = sc.nextLine();
+            if (isValidName(name)) {
+                break;
+            } else {
+                System.out.println("Invalid name. Please enter a valid name (letters and spaces only).");
+            }
+        }
 
-        System.out.print("Enter your gender: ");
-        String gender = sc.nextLine();
+        String gender = "";
+        while (true) {
+            System.out.print("Enter your gender (Male/Female/Other): ");
+            gender = sc.nextLine();
+            if (isValidGender(gender)) {
+                break;
+            } else {
+                System.out.println("Invalid gender. Please enter Male, Female, or Other.");
+            }
+        }
 
-        System.out.print("Enter your phone number: ");
-        String phoneNumber = sc.nextLine();
+        String phoneNumber = "";
+        while (true) {
+            System.out.print("Enter your phone number (10 digits): ");
+            phoneNumber = sc.nextLine();
+            if (isValidPhoneNumber(phoneNumber)) {
+                break;
+            } else {
+                System.out.println("Invalid phone number. Please enter a valid 10-digit phone number.");
+            }
+        }
 
-        System.out.print("Enter your email: ");
-        String email = sc.nextLine();
+        String email = "";
+        while (true) {
+            System.out.print("Enter your email: ");
+            email = sc.nextLine();
+            if (isValidEmail(email)) {
+                break;
+            } else {
+                System.out.println("Invalid email. Please enter a valid email address.");
+            }
+        }
 
         // Initialize hotel object
         Hotel hotel = new Hotel();
@@ -82,6 +115,24 @@ class Main {
         } finally {
             sc.close();
         }
+    }
+
+    // Validation methods
+    private static boolean isValidName(String name) {
+        return name != null && name.matches("[a-zA-Z\\s]+") && !name.trim().isEmpty();
+    }
+
+    private static boolean isValidGender(String gender) {
+        return gender.equalsIgnoreCase("Male") || gender.equalsIgnoreCase("Female") || gender.equalsIgnoreCase("Other");
+    }
+
+    private static boolean isValidPhoneNumber(String phoneNumber) {
+        return phoneNumber.matches("\\d{10}"); // Matches exactly 10 digits
+    }
+
+    private static boolean isValidEmail(String email) {
+        // Simple email validation
+        return email != null && email.matches("^[\\w-\\.]+@[\\w-]+\\.[a-zA-Z]{2,4}$");
     }
 }
 
